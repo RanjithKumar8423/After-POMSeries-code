@@ -23,7 +23,7 @@
 		</classes>
 	</test>
 
-	<!--<test name="OPENCARTAccountsPage Test">
+	<test name="OPENCARTAccountsPage Test">
 		<parameter name="browser" value="null" />
 
 		<classes>
@@ -38,7 +38,7 @@
 		<classes>
 			<class name="com.qa.opencart.tests.SearchResultPageTest" />
 		</classes>
-	</test>-->
+	</test>
 
 	<!--<test name="OPENCARTproductinfo Test">
 	<parameter name="browser" value="edge" />
