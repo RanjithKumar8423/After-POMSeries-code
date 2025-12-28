@@ -37,7 +37,7 @@ public class LoginPage {
 		System.out.println("Page title is  " + url);
 		return url;
 	}
-	@Step("These is my Login Page Forgot Link")
+	@Step("These is my Login_Page Forgot Link")
 	public boolean isForgotPwdLinkExist() {
 		return ele.isElementDisplayed(emailId);
 
