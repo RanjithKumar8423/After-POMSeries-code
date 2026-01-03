@@ -107,20 +107,17 @@ pipeline
                 }
             }
         }
-         stage('Publish Allure Reports') {
-           steps {
-                script {
-                    allure([
-                        includeProperties: false,
-                        jdk: '',
-                        properties: [],
-                        reportBuildPolicy: 'ALWAYS',
-                        results: [[path: '/allure-results']]
-                    ])
-                }
+        stage('Publish sanity Extent Report'){
+            steps{
+                     publishHTML([allowMissing: false,
+                                  alwaysLinkToLastBuild: false, 
+                                  keepAll: true, 
+                                  reportDir: 'reports', 
+                                  reportFiles: 'TestExecutionReport.html', 
+                                  reportName: 'HTML Sanity Extent Report', 
+                                  reportTitles: ''])
             }
         }
-        
        
         
         
