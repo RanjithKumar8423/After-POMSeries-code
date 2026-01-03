@@ -1,82 +1,73 @@
-pipeline 
-{
+pipeline{
+    
     agent any
     
-    tools{
-        maven 'maven'
-        }
-
-    stages 
-    {
-        stage('Build') 
-        {
-            steps
-            {
-                 git 'https://github.com/jglick/simple-maven-project-with-tests.git'
-                 bat "mvn -Dmaven.test.failure.ignore=true clean package"
-            }
-            post 
-            {
-                success
-                {
-                    junit '**/target/surefire-reports/TEST-*.xml'
-                    archiveArtifacts 'target/*.jar'
-                }
-            }
-        }
+    stages{
         
-        
-        stage("Deploy to DEV"){
+        stage("build"){
             steps{
-                echo("deploy to DEV")
+                echo("build the project")
             }
         }
         
-
+        
+        stage("Run Security Scan"){
+            steps{
+                echo("security testing using burp suite")
+            }
+        }
+        
+        stage("Run Unit test"){
+            steps{
+                echo("run UTs")
+            }
+        }
+        
+        stage("Run Integration test"){
+            steps{
+                echo("run ITs")
+            }
+        }
+        
+        stage("Deploy to dev"){
+            steps{
+                echo("deploy to dev")
+            }
+        }
+        
         stage("Deploy to QA"){
             steps{
-                echo("deploy to qa")
+                echo("deploy to QA")
             }
         }
         
-        
-                
-        stage('Regression Automation Tests') {
-            steps {
-                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                    git 'https://github.com/RanjithKumar8423/After-POMSeries-code'
-                    bat "mvn clean test -Dsurefire.suiteXmlFiles=src/test/resources/testrunners/testng_regression.xml"
-                    
-                }
-            }
-        }
-                
-     
-        stage('Publish Allure Reports') {
-           steps {
-                script {
-                    allure([
-                        includeProperties: false,
-                        jdk: '',
-                        properties: [],
-                        reportBuildPolicy: 'ALWAYS',
-                        results: [[path: '/allure-results']]
-                    ])
-                }
-            }
-        }
-        
-      
-        
-        stage("Deploy to Stage"){
+        stage("Run regression test cases on QA"){
             steps{
-                echo("deploy to Stage")
+                echo("Run test cases on QA")
             }
         }
         
-     
-       
+        stage("Deploy to stage"){
+            steps{
+                echo("deploy to stage")
+            }
+        }
+        
+         stage("Run sanity test cases on QA"){
+            steps{
+                echo("Run sanity test cases on QA")
+            }
+        }
+        
+        stage("Deploy to PROD"){
+            steps{
+                echo("deploy to PROD")
+            }
+        }
+        
         
         
     }
+    
+    
 }
