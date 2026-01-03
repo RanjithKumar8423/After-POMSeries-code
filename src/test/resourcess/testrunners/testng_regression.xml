@@ -16,7 +16,7 @@
 	</listeners>
 
 	<test name="OPEN CARTLogin Test">
-		<parameter name="browser" value="null" />
+		<parameter name="browser" value="chrome" />
 
 		<classes>
 			<class name="com.qa.opencart.tests.LoginPageTest" />
@@ -24,7 +24,7 @@
 	</test>
 
 	<test name="OPENCARTAccountsPage Test">
-		<parameter name="browser" value="null" />
+		<parameter name="browser" value="chrome" />
 
 		<classes>
 			<class name="com.qa.opencart.tests.AccountsPageTest" />
@@ -33,19 +33,19 @@
 
 
 	<test name="OPENCARTSearchResultPage Test">
-		<parameter name="browser" value="null" />
+		<parameter name="browser" value="chrome" />
 
 		<classes>
 			<class name="com.qa.opencart.tests.SearchResultPageTest" />
 		</classes>
 	</test>
 
-	<!--<test name="OPENCARTproductinfo Test">
-	<parameter name="browser" value="edge" />
+	<test name="OPENCARTproductinfo Test">
+	<parameter name="browser" value="chrome" />
 
 		<classes>
 			<class name="com.qa.opencart.tests.ProductInfoPageTest" />
 		</classes>
-	</test>-->
+	</test>
 
 </suite>
