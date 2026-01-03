@@ -45,7 +45,7 @@ pipeline
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                     git 'https://github.com/RanjithKumar8423/After-POMSeries-code'
-                    bat "mvn clean test -Dsurefire.suiteXmlFiles=src\test\resourcess\testrunners\testng_regression.xml -Denv=qa"
+                    bat "mvn clean test -Dsurefire.suiteXmlFiles=src\test\resourcess\testrunners\testng_regression.xml"
                     
                 }
             }
