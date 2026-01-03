@@ -39,8 +39,7 @@ pipeline
             }
         }
         
-        
-                
+      
         stage('Regression Automation Tests') {
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
@@ -74,7 +73,29 @@ pipeline
             }
         }
         
-   
+         stage('Sanity Automation Test') {
+            steps {
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                    git ' https://github.com/RanjithKumar8423/After-POMSeries-code.git'
+                    bat "mvn clean test -Dsurefire.suiteXmlFiles=src/test/resourcess/testrunners/testng_sanity.xml -Denv=stage"
+                    
+                }
+            }
+        }
+        
+    stage('Publish Allure Reports') {
+           steps {
+                script {
+                    allure([
+                        includeProperties: false,
+                        jdk: '',
+                        properties: [],
+                        reportBuildPolicy: 'ALWAYS',
+                        results: [[path: '/allure-results']]
+                    ])
+                }
+            }
+        }
         
         
         
